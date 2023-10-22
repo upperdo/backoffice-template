@@ -23,16 +23,6 @@ copy .env.example .env
 pnpm dev
 ```
 
-## Aliases
-To have a better project structure in the imports of the files, we have added the following alias.
-
-- $lib - Default points to src/lib/
-- $assets - Here we will have access to our assets paths, public files
-- $stores - Here we will have our stores
-- $features - Here are going to be the features of the application, components with business logic
-- $ui - Everything related to ui, widgets, layout etc.
-- $common - Here we will have all common functionality such as utils functions, constants etc.
-
 ## Tech Stack
 
 - SvelteKit
