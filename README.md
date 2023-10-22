@@ -1,37 +1,41 @@
-# create-svelte
+# SvelteKit Appwrite BackOffice Template
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Everything you need to build an Administration Panel Using Svelte/SvelteKit and AppWrite
 
-## Creating a project
+## Development
 
-If you're seeing this, you've probably already done this step. Congrats!
+If you want to begin the development process, follow this guide.
 
 ```bash
 # create a new project in the current directory
-npm create svelte@latest
+git clone repo
 
-# create a new project in my-app
-npm create svelte@latest my-app
+# cd into directory
+cd project-name/
+
+# install dependencies
+pnpm i
+
+# create new env file and update the variables
+copy .env.example .env
+
+# run the project
+pnpm dev
 ```
 
-## Developing
+## Aliases
+To have a better project structure in the imports of the files, we have added the following alias.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+- $lib : Default alias
 
-```bash
-npm run dev
+## Tech Stack
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
+- SvelteKit
+- Svelte
+- TailwindCSS
+- ShadCN-Svelte
+- AppWrite
+- 
 
 You can preview the production build with `npm run preview`.
 
