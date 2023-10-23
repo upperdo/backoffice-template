@@ -5,7 +5,7 @@
 	import {
 		Textarea,
 		type TextareaEvents
-	} from "$lib/ui/components/ui/textarea";
+	} from "$lib/ui/components/textarea";
 
 	type $$Props = HTMLTextareaAttributes;
 	type $$Events = TextareaEvents;

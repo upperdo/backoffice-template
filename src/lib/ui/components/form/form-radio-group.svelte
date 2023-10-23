@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getFormField } from "formsnap";
 	import type { RadioGroup as RadioGroupPrimitive } from "bits-ui";
-	import * as RadioGroup from "$lib/ui/components/ui/radio-group";
+	import * as RadioGroup from "$lib/ui/components/radio-group";
 
 	type $$Props = RadioGroupPrimitive.Props;
 	const { attrStore, setValue, name, value } = getFormField();

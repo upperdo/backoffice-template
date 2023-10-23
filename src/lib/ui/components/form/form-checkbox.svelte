@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { getFormField } from "formsnap";
 	import type { Checkbox as CheckboxPrimitive } from "bits-ui";
-	import { Checkbox } from "$lib/ui/components/ui/checkbox";
+	import { Checkbox } from "$lib/ui/components/checkbox";
 	type $$Props = CheckboxPrimitive.Props;
 	type $$Events = CheckboxPrimitive.Events;
 
