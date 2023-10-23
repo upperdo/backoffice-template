@@ -11,12 +11,16 @@
 	// Stores
 	import { InitLocaleStore, LocaleStore, LanguageStore } from '$lib/stores/locale';
 
+	// Components
+	import { Seo } from '$lib/ui/components';
+
 	// styles
 	import '../app.postcss';
 
 	// Variables
 	let userLocale:string;
 	let loadingLanguage = true;
+
 
 	// Functions
 	InitLocaleStore(undefined, StorageUtility.getData, StorageUtility.saveData);
@@ -30,7 +34,7 @@
 		});
 	})
 </script>
-
+<Seo seoConfig={CONSTANTS.CORE.seoConfig} />
 {#if browser && !loadingLanguage}
 	<slot />
 {/if}

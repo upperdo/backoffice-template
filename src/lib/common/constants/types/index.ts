@@ -77,6 +77,7 @@ type CoreData = {
     storageLocalePropertyName: string,
     selectedPlatform: string
     languageList: LanguageListData[],
+    seoConfig: SEO
 } & ExtraData;
 
 
@@ -87,8 +88,39 @@ type DocumentListData<T> = {
 
 type DocumentData<T> = T & GlobalDocumentProperties;
 
+type SEO = {
+    title: string,
+    company: string;
+    description: string,
+    canonical?: string,
+    apple_touch_icon?: string,
+    favicon: {
+        32?: string,
+        16?: string
+    },
+    manifest?: string,
+    maskIcon?: string,
+    og?: {
+        title: string,
+        locale: string,
+        type: string,
+        description: string,
+        url: string,
+        site_name: string,
+        modified_time: string,
+        image: string,
+        image_w: string,
+        image_h: string,
+        image_type: string,
+    },
+    twitter?: {
+        card: string,
+    }
+}
+
 export type { 
     AccountData, SessionData, CoreData, 
     LanguageListData, DocumentListData, 
-    UserData, GlobalDocumentProperties, DocumentData, 
+    UserData, GlobalDocumentProperties, DocumentData,
+    SEO
 };

@@ -9,6 +9,12 @@ const CORE: CoreData = {
     defaultLocale: 'en_US',
     storageLocalePropertyName: 'locale',
     selectedPlatform: PUBLIC_SELECTED_PLATFORM || 'appwrite',
+    seoConfig: {
+        title: 'App Name',
+        company: 'Your Company',
+        description: 'Your description goes here',
+        favicon: {},
+    },
     languageList: [
         {
             label: 'Español',
@@ -18,7 +24,7 @@ const CORE: CoreData = {
             label: 'English',
             value: 'en_US'
         }
-    ]
+    ],
 }
 
 export default CORE;
