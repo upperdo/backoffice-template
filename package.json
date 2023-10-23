@@ -44,6 +44,7 @@
 		"bits-ui": "^0.6.2",
 		"clsx": "^2.0.0",
 		"formsnap": "^0.2.0",
+		"lucide-svelte": "^0.288.0",
 		"radix-icons-svelte": "^1.2.1",
 		"sveltekit-superforms": "^1.8.0",
 		"tailwind-merge": "^1.14.0",
