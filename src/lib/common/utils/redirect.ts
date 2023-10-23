@@ -1,5 +1,5 @@
-import { redirect } from "@sveltejs/kit";
 import { browser } from "$app/environment";
+import { goto } from "$app/navigation";
 
 /**
  * @name BrowserRedirectTo
@@ -11,6 +11,6 @@ import { browser } from "$app/environment";
 
 export const BrowserRedirectTo = (route: string): void => {
     if(browser){
-        throw redirect(301, route);
+        goto(route)
     }
 }

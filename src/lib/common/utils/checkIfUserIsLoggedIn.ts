@@ -12,14 +12,18 @@ import type { AccountData } from "../constants/types";
 
 export const CheckIfUserIsLoggedIn = (isLoggedIn: AccountData): void => {
     switch (true){
-        case isLoggedIn == null || !isLoggedIn:
+        case !isLoggedIn:
             BrowserRedirectTo(CONSTANTS.APP_PATHS.routes.login)
             break;
         
         case isLoggedIn?.emailVerification === false:
+            BrowserRedirectTo(CONSTANTS.APP_PATHS.routes.login + '?error=You need to verify your email first')
+            break;
+        case isLoggedIn?.emailVerification === true:
+             BrowserRedirectTo(CONSTANTS.APP_PATHS.routes.backoffice)
             break;
 
         default:
-            BrowserRedirectTo(CONSTANTS.APP_PATHS.routes.backoffice)
+            BrowserRedirectTo(CONSTANTS.APP_PATHS.routes.login)
     }
 }

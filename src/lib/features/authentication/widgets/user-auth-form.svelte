@@ -1,19 +1,30 @@
 <script lang="ts">
+	import { InitAccountStore, AccountStore } from "$lib/stores";
+	import { AccountService } from "$lib/services";
 	import { LanguageStore } from "$lib/stores/locale";
 	import { Icons } from "$lib/ui/components/icons";
 	import { Button } from "$lib/ui/components/button";
 	import { Input } from "$lib/ui/components/input";
 	import { Label } from "$lib/ui/components/label";
-	import { cn } from "$lib/common/utils/";
+	import { CheckIfUserIsLoggedIn, cn } from "$lib/common/utils/";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
 	let isLoading = false;
+	let email = '';
+	let password = '';
+
 	async function onSubmit() {
 		isLoading = true;
 
+		await AccountService.createEmailSession(email, password);
+		await InitAccountStore();
+		CheckIfUserIsLoggedIn($AccountStore);
+
 		setTimeout(() => {
+			email = '';
+			password = '';
 			isLoading = false;
 		}, 3000);
 	}
@@ -32,6 +43,7 @@
 					autocomplete="email"
 					autocorrect="off"
 					disabled={isLoading}
+					bind:value={email}
 				/>
 				<div></div>
 				<Label class="text-gray-500" for="password">{$LanguageStore.passwordInputLabel}</Label>
@@ -43,6 +55,7 @@
 					autocomplete="off"
 					autocorrect="off"
 					disabled={isLoading}
+					bind:value={password}
 				/>
 			</div>
 			<Button disabled={isLoading}>

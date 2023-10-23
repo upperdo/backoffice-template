@@ -16,6 +16,7 @@
 
 	// styles
 	import '../app.postcss';
+	import { goto } from '$app/navigation';
 
 	// Variables
 	let userLocale:string;
