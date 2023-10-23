@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { Heading } from "$lib/ui/widgets";
+    import DashboardPage from "$lib/features/dashboard/widgets/dashboard-page.svelte";
 </script>
 
-<Heading text="Dashboard" />
+<DashboardPage />
