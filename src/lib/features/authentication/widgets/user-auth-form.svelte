@@ -1,0 +1,88 @@
+<script lang="ts">
+	import { InitAccountStore, AccountStore } from "$lib/stores";
+	import { AccountService } from "$lib/services";
+	import { LanguageStore } from "$lib/stores/locale";
+	import { Icons } from "$lib/ui/components/icons";
+	import { Button } from "$lib/ui/components/button";
+	import { Input } from "$lib/ui/components/input";
+	import { Label } from "$lib/ui/components/label";
+	import { CheckIfUserIsLoggedIn, cn } from "$lib/common/utils/";
+
+	let className: string | undefined | null = undefined;
+	export { className as class };
+
+	let isLoading = false;
+	let email = '';
+	let password = '';
+
+	async function onSubmit() {
+		isLoading = true;
+
+		await AccountService.createEmailSession(email, password);
+		await InitAccountStore();
+		CheckIfUserIsLoggedIn($AccountStore);
+
+		setTimeout(() => {
+			email = '';
+			password = '';
+			isLoading = false;
+		}, 3000);
+	}
+</script>
+
+<div class={cn("grid gap-6", className)} {...$$restProps}>
+	<form on:submit|preventDefault={onSubmit}>
+		<div class="grid gap-2">
+			<div class="grid gap-2">
+				<Label class="text-gray-500" for="email">{$LanguageStore.emailInputLabel}</Label>
+				<Input
+					id="email"
+					placeholder={$LanguageStore.emailInputPlaceHolderText}
+					type="email"
+					autocapitalize="none"
+					autocomplete="email"
+					autocorrect="off"
+					disabled={isLoading}
+					bind:value={email}
+				/>
+				<div></div>
+				<Label class="text-gray-500" for="password">{$LanguageStore.passwordInputLabel}</Label>
+				<Input
+					id="password"
+					placeholder={$LanguageStore.passwordInputPlaceHolderText}
+					type="password"
+					autocapitalize="none"
+					autocomplete="off"
+					autocorrect="off"
+					disabled={isLoading}
+					bind:value={password}
+				/>
+			</div>
+			<Button disabled={isLoading}>
+				{#if isLoading}
+					<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+				{/if}
+				Login
+			</Button>
+		</div>
+	</form>
+	<!-- <div class="relative">
+		<div class="absolute inset-0 flex items-center">
+			<span class="w-full border-t" />
+		</div>
+		<div class="relative flex justify-center text-xs uppercase">
+			<span class="bg-background px-2 text-muted-foreground">
+				Or continue with
+			</span>
+		</div>
+	</div> -->
+	<!-- <Button variant="outline" type="button" disabled={isLoading}>
+		{#if isLoading}
+			<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
+		{:else}
+			<Icons.gitHub class="mr-2 h-4 w-4" />
+		{/if}
+		{" "}
+		Github
+	</Button> -->
+</div>

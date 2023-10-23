@@ -1,37 +1,60 @@
-# create-svelte
+# SvelteKit Appwrite BackOffice Template
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Everything you need to build an Administration Panel Using Svelte/SvelteKit and AppWrite
 
-## Creating a project
+## Development
 
-If you're seeing this, you've probably already done this step. Congrats!
+If you want to begin the development process, follow this guide.
 
 ```bash
 # create a new project in the current directory
-npm create svelte@latest
+git clone repo
 
-# create a new project in my-app
-npm create svelte@latest my-app
+# cd into directory
+cd project-name/
+
+# install dependencies
+pnpm i
+
+# create new env file and update the variables
+copy .env.example .env
+
+# run the project
+pnpm dev
 ```
 
-## Developing
+## Folder Structure
+The project is well organized into the following folder structure, and use route grouping.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+### Routes
+- (auth) Here you will find a group of route with the auth layout ( Public route )
+- (backoffice) Here you will find the admin panel ( Protected route )
 
-```bash
-npm run dev
+### Lib
+- common
+- - constants All application constants are here, images, sizes, enums, colors, api_constants.
+- - formatters Formatter utility class to format numbers into currency, format date etc.
+- - local_storage Local Storage utility class
+- - logger Logger utility class
+- - utils Multiple helpers functions
+- - validators Validator utility class for email, phone etc
+- data Mock/Fake data
+- features Here is where we will put the features for the application
+- - authentication
+- - dashboard
+- localization Language files and localization utility class
+- stores All application stores are going to be here
+- ui All UI related to the application is going to be here
+- - components Here is the component library
+- - widgets this are a collection of common ui widgets that combine ui components into functional widgets
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+## Tech Stack
 
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
+- SvelteKit
+- Svelte
+- TailwindCSS
+- ShadCN-Svelte
+- AppWrite
 
 You can preview the production build with `npm run preview`.
 
