@@ -32,16 +32,25 @@
 					autocorrect="off"
 					disabled={isLoading}
 				/>
+				<Input
+					id="password"
+					placeholder="password"
+					type="password"
+					autocapitalize="none"
+					autocomplete="off"
+					autocorrect="off"
+					disabled={isLoading}
+				/>
 			</div>
 			<Button disabled={isLoading}>
 				{#if isLoading}
 					<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 				{/if}
-				Sign In with Email
+				Login
 			</Button>
 		</div>
 	</form>
-	<div class="relative">
+	<!-- <div class="relative">
 		<div class="absolute inset-0 flex items-center">
 			<span class="w-full border-t" />
 		</div>
@@ -50,8 +59,8 @@
 				Or continue with
 			</span>
 		</div>
-	</div>
-	<Button variant="outline" type="button" disabled={isLoading}>
+	</div> -->
+	<!-- <Button variant="outline" type="button" disabled={isLoading}>
 		{#if isLoading}
 			<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 		{:else}
@@ -59,5 +68,5 @@
 		{/if}
 		{" "}
 		Github
-	</Button>
+	</Button> -->
 </div>

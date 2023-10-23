@@ -6,6 +6,7 @@ const IMAGE_STRINGS = {
     // -- App Logos
     darkAppLogo:'',
     lightAppLogo: '',
+    loginBackground: '/assets/images/login_bg.avif',
 
     // -- Social Logos
     google: '',
