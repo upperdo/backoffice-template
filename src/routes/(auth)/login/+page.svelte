@@ -5,21 +5,21 @@
 
 <div class="flex flex-col space-y-2 text-center">
     <h1 class="text-2xl font-semibold tracking-tight">
-        Login to your account
+        {$LanguageStore.loginHeading}
     </h1>
     <p class="text-sm text-muted-foreground">
-        Enter your email and password below to login in your account
+        {$LanguageStore.loginSubHeading}
     </p>
 </div>
 <UserAuthForm />
 <p class="px-8 text-center text-sm text-muted-foreground">
-    By clicking continue, you agree to our{" "}
+    {$LanguageStore.formAgreedText}{" "}
     <a href="/" class="underline underline-offset-4 hover:text-primary">
-        Terms of Service
+        {$LanguageStore.termsOfService}
     </a>{" "}
-    and{" "}
+    {$LanguageStore.andText}{" "}
     <a href="/" class="underline underline-offset-4 hover:text-primary">
-        Privacy Policy
+        {$LanguageStore.privacyPolicy}
     </a>
     .
 </p>

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { LanguageStore } from "$lib/stores/locale";
 	import { Icons } from "$lib/ui/components/icons";
 	import { Button } from "$lib/ui/components/button";
 	import { Input } from "$lib/ui/components/input";
@@ -21,20 +22,22 @@
 <div class={cn("grid gap-6", className)} {...$$restProps}>
 	<form on:submit|preventDefault={onSubmit}>
 		<div class="grid gap-2">
-			<div class="grid gap-1">
-				<Label class="sr-only" for="email">Email</Label>
+			<div class="grid gap-2">
+				<Label class="text-gray-500" for="email">{$LanguageStore.emailInputLabel}</Label>
 				<Input
 					id="email"
-					placeholder="name@example.com"
+					placeholder={$LanguageStore.emailInputPlaceHolderText}
 					type="email"
 					autocapitalize="none"
 					autocomplete="email"
 					autocorrect="off"
 					disabled={isLoading}
 				/>
+				<div></div>
+				<Label class="text-gray-500" for="password">{$LanguageStore.passwordInputLabel}</Label>
 				<Input
 					id="password"
-					placeholder="password"
+					placeholder={$LanguageStore.passwordInputPlaceHolderText}
 					type="password"
 					autocapitalize="none"
 					autocomplete="off"
