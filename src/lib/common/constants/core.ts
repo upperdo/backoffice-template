@@ -1,3 +1,4 @@
+import { PUBLIC_SELECTED_PLATFORM } from "$env/static/public";
 import type { CoreData } from "./types";
 /**
  * @type {string}
@@ -7,6 +8,7 @@ import type { CoreData } from "./types";
 const CORE: CoreData = {
     defaultLocale: 'en_US',
     storageLocalePropertyName: 'locale',
+    selectedPlatform: PUBLIC_SELECTED_PLATFORM || 'appwrite',
     languageList: [
         {
             label: 'Español',

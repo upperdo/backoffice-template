@@ -1,9 +1,9 @@
 /**
  * @class
- * @name LoggetUtility
+ * @name LoggerUtility
  * @description A utility class for logging messages with annotations.
  */
-export class LoggetUtility {
+export class LoggerUtility {
     /**
      * Log an informational message.
      *

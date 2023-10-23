@@ -38,5 +38,8 @@
 		"vite": "^4.5.0",
 		"vitest": "^0.32.4"
 	},
-	"type": "module"
+	"type": "module",
+	"dependencies": {
+		"appwrite": "^13.0.0"
+	}
 }

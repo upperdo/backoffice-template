@@ -49,6 +49,21 @@ type AccountData = {
     accessedAt: string
 } | null;
 
+type GlobalDocumentProperties = {
+    $id: string,
+    $collectionId: string
+    $databaseId: string
+    $createdAt: string
+    $updatedAt: string
+    $permissions: string
+}
+
+type UserData = {
+    name?: string
+    lastName?: string
+    roles: string[]
+} & GlobalDocumentProperties;
+
 
 
 type ExtraData = {
@@ -60,9 +75,20 @@ type LanguageListData = { label: string, value: string }
 type CoreData = {
     defaultLocale: string;
     storageLocalePropertyName: string,
+    selectedPlatform: string
     languageList: LanguageListData[],
 } & ExtraData;
 
 
+type DocumentListData<T> = {
+    total: number
+    documents: T[];
+}
 
-export type { AccountData, SessionData, CoreData, LanguageListData };
+type DocumentData<T> = T & GlobalDocumentProperties;
+
+export type { 
+    AccountData, SessionData, CoreData, 
+    LanguageListData, DocumentListData, 
+    UserData, GlobalDocumentProperties, DocumentData, 
+};
