@@ -1,4 +1,4 @@
-import { PUBLIC_SELECTED_PLATFORM } from "$env/static/public";
+import { PUBLIC_DEBUG, PUBLIC_SELECTED_PLATFORM } from "$env/static/public";
 import type { CoreData } from "./types";
 /**
  * @type {string}
@@ -25,6 +25,7 @@ const CORE: CoreData = {
             value: 'en_US'
         }
     ],
+    debug: PUBLIC_DEBUG || false,
 }
 
 export default CORE;

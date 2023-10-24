@@ -19,7 +19,7 @@ async function listDocuments<T>(databseId: string, collectionId:string, queries?
         
         const documents: DocumentListData<DocumentModel<T>> = {
             total: result.total,
-            documents: result.documents.map((documentData) => createDocumentModel(documentData))
+            documents: result.documents.map((documentData) => createDocumentModel<DocumentModel<T>>(documentData))
         }
         
         return documents;
@@ -33,7 +33,7 @@ async function listDocuments<T>(databseId: string, collectionId:string, queries?
         return {
             total: 0,
             documents: []
-        }
+        } as DocumentListData<DocumentModel<T>>
     }
 }
 

@@ -5,7 +5,7 @@
 <div class="space-y-8">
 	<div class="flex items-center">
 		<Avatar.Root class="h-9 w-9">
-			<Avatar.Image src="/avatars/01.png" alt="Avatar" />
+			<!-- <Avatar.Image src="/avatars/01.png" alt="Avatar" /> -->
 			<Avatar.Fallback>OM</Avatar.Fallback>
 		</Avatar.Root>
 		<div class="ml-4 space-y-1">
@@ -18,7 +18,7 @@
 		<Avatar.Root
 			class="flex h-9 w-9 items-center justify-center space-y-0 border"
 		>
-			<Avatar.Image src="/avatars/02.png" alt="Avatar" />
+			<!-- <Avatar.Image src="/avatars/02.png" alt="Avatar" /> -->
 			<Avatar.Fallback>JL</Avatar.Fallback>
 		</Avatar.Root>
 		<div class="ml-4 space-y-1">
@@ -29,7 +29,7 @@
 	</div>
 	<div class="flex items-center">
 		<Avatar.Root class="h-9 w-9">
-			<Avatar.Image src="/avatars/03.png" alt="Avatar" />
+			<!-- <Avatar.Image src="/avatars/03.png" alt="Avatar" /> -->
 			<Avatar.Fallback>IN</Avatar.Fallback>
 		</Avatar.Root>
 		<div class="ml-4 space-y-1">
@@ -42,7 +42,7 @@
 	</div>
 	<div class="flex items-center">
 		<Avatar.Root class="h-9 w-9">
-			<Avatar.Image src="/avatars/04.png" alt="Avatar" />
+			<!-- <Avatar.Image src="/avatars/04.png" alt="Avatar" /> -->
 			<Avatar.Fallback>WK</Avatar.Fallback>
 		</Avatar.Root>
 		<div class="ml-4 space-y-1">
@@ -53,7 +53,7 @@
 	</div>
 	<div class="flex items-center">
 		<Avatar.Root class="h-9 w-9">
-			<Avatar.Image src="/avatars/05.png" alt="Avatar" />
+			<!-- <Avatar.Image src="/avatars/05.png" alt="Avatar" /> -->
 			<Avatar.Fallback>SD</Avatar.Fallback>
 		</Avatar.Root>
 		<div class="ml-4 space-y-1">

@@ -10,7 +10,7 @@ class BaseDocumentModel {
     /**
      * The collection to which the document belongs.
      */
-    $collection!: string;
+    $collectionId!: string;
 
     /**
      * The database to which the document belongs.
@@ -26,6 +26,11 @@ class BaseDocumentModel {
      * The last update date and time of the document.
      */
     $updatedAt!: string;
+    
+    /**
+     * Document permissions lists.
+     */
+      $permissions!: string[];
 
     /**
      * Create a new BaseDocumentModel instance.
@@ -54,13 +59,26 @@ class DocumentModel<T> extends BaseDocumentModel {
 }
 
 /**
+* Convert the DocumentModel to a plain object without the DocumentModel wrapper.
+* @returns {object} - The plain object with document properties.
+*/
+function toPlainObject<T>(documentModel: DocumentModel<T>): Omit<DocumentModel<T>, 'toPlainObject'> {
+    const { ...rest } = documentModel;
+    return rest;
+}
+
+/**
  * Create a new document model.
  * @template T - The type for additional properties.
  * @param data - Data for initializing the document model, including additional properties.
- * @returns A new DocumentModel instance.
+ * @returns A DocumentModel Object.
  */
 function createDocumentModel<T extends Partial<BaseDocumentModel>>(data: T) {
-    return new DocumentModel<T>(data);
+    const documentModel = new DocumentModel<T>(data);
+    
+    return toPlainObject(documentModel); 
 }
 
-export { DocumentModel, createDocumentModel };
+
+
+export { DocumentModel, createDocumentModel, toPlainObject };

@@ -163,11 +163,17 @@ type ExecutionData<T> = {
 
 } & CommonExecutionProperties<T>;
 
+type LeadData = {
+    name: string
+    lastName: string
+    isActive: boolean | false
+}
+
 export type {
     AccountData, SessionData, CoreData,
     LanguageListData, DocumentListData,
     UserData, GlobalDocumentProperties, DocumentData,
     SEO, CommonExecutionProperties, ExecutionListData,
     ExecutionPlaceHolderData,
-    ExecutionData, ExtraData
+    ExecutionData, ExtraData, LeadData
 };
