@@ -118,9 +118,47 @@ type SEO = {
     }
 }
 
+enum ExecutionTriggers {
+    http,
+    schedule,
+    event
+}
+
+enum ExecutionStatus {
+    processing,
+    completed,
+    failed
+}
+
+
+type CommonExecutionProperties<T> = {
+    $id: string
+    $createdAt: string
+    $updatedAt: string
+    $permissions: string[]
+    funtionId: string
+    $trigger: ExecutionTriggers
+    status: ExecutionStatus
+    requestMethod: string
+    requestPath: string
+    requestHeaders: ExtraData[]
+    responseStatusCode: number
+    responseBody: T
+    responseHeaders: ExtraData[]
+    logs: string
+    errors: string
+    duration: number
+}
+
+type ExecutionListData<T> = {
+    tota: number
+    executions: T[]
+}
+
 export type { 
     AccountData, SessionData, CoreData, 
     LanguageListData, DocumentListData, 
     UserData, GlobalDocumentProperties, DocumentData,
-    SEO
+    SEO, CommonExecutionProperties, ExecutionListData,
+    ExecutionTriggers, ExecutionStatus
 };
