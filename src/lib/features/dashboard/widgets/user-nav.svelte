@@ -37,18 +37,16 @@
 		<DropdownMenu.Separator />
 		<DropdownMenu.Group>
 			<DropdownMenu.Item>
-				Profile
-				<DropdownMenu.Shortcut>⇧⌘P</DropdownMenu.Shortcut>
+				<a href="/settings/profile">
+					Profile
+				</a>
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>
-				Billing
-				<DropdownMenu.Shortcut>⌘B</DropdownMenu.Shortcut>
+				<a href="/settings/account">Account</a>
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>
-				Settings
-				<DropdownMenu.Shortcut>⌘S</DropdownMenu.Shortcut>
+				<a href="/settings/security">Security</a>
 			</DropdownMenu.Item>
-			<DropdownMenu.Item>New Team</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
 		<DropdownMenu.Item on:click={logout}>
