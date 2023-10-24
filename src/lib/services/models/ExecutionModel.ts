@@ -2,25 +2,96 @@ import type { ExecutionTriggers as ExecutionTriggersType, ExecutionStatus as Exe
 import { ExecutionStatus, ExecutionTriggers } from "$lib/common/constants/types";
 import { parseEnumValue } from "$lib/common/utils";
 
+/**
+ * Class representing an execution model.
+ * @template T - The type of the response body.
+ */
 class ExecutionModel<T> {
-    $id: string
-    $createdAt: string
-    $updatedAt: string
-    $permissions: string[]
-    funtionId?: string
-    trigger?: ExecutionTriggersType
-    status: ExecutionStatusType
-    requestMethod: string
-    requestPath: string
-    requestHeaders: ExtraData[]
-    responseStatusCode: number
+    /**
+     * The unique identifier for the execution.
+     */
+    $id: string;
+    
+    /**
+     * The creation date and time of the execution.
+     */
+    $createdAt: string;
+    
+    /**
+     * The last update date and time of the execution.
+     */
+    $updatedAt: string;
+    
+    /**
+     * An array of permissions associated with the execution.
+     */
+    $permissions: string[];
+    
+    /**
+     * The function identifier associated with the execution, if available.
+     */
+    funtionId?: string;
+    
+    /**
+     * The trigger type of the execution.
+     */
+    trigger?: ExecutionTriggersType;
+    
+    /**
+     * The status of the execution.
+     */
+    status: ExecutionStatusType;
+    
+    /**
+     * The HTTP request method used for the execution.
+     */
+    requestMethod: string;
+    
+    /**
+     * The request path used for the execution.
+     */
+    requestPath: string;
+    
+    /**
+     * An array of request headers associated with the execution.
+     */
+    requestHeaders: ExtraData[];
+    
+    /**
+     * The HTTP response status code received for the execution.
+     */
+    responseStatusCode: number;
+    
+    /**
+     * The response body of the execution.
+     */
     responseBody: T;
-    responseHeaders: ExtraData[]
-    logs: string
-    errors: string
-    duration: number
+    
+    /**
+     * An array of response headers associated with the execution.
+     */
+    responseHeaders: ExtraData[];
+    
+    /**
+     * The logs generated during the execution.
+     */
+    logs: string;
+    
+    /**
+     * Any errors encountered during the execution.
+     */
+    errors: string;
+    
+    /**
+     * The duration of the execution in milliseconds.
+     */
+    duration: number;
 
-    constructor(data: any){
+    /**
+     * Create a new ExecutionModel instance.
+     * @param data - Data for initializing the execution model.
+     */
+    constructor(data: any) {
         this.$id = data.$id || '';
         this.$createdAt = data.$createdAt || '';
         this.$updatedAt = data.$updatedAt || '';
@@ -39,25 +110,52 @@ class ExecutionModel<T> {
         this.responseBody = data.responseBody || '';
     }
 
-    parseTrigger(trigger: string){
-        return this.parseEnumValue(trigger, ExecutionTriggers)
+    /**
+     * Parse the execution trigger from a string representation.
+     * @param trigger - The string representation of the trigger.
+     * @returns The parsed trigger type.
+     */
+    parseTrigger(trigger: string) {
+        return this.parseEnumValue(trigger, ExecutionTriggers);
     }
 
-    parseStatus(status: string){
+    /**
+     * Parse the execution status from a string representation.
+     * @param status - The string representation of the status.
+     * @returns The parsed status type.
+     */
+    parseStatus(status: string) {
         return this.parseEnumValue(status, ExecutionStatus);
     }
 
-    parseHeaders(headers: any[]){
+    /**
+     * Parse an array of execution headers.
+     * @param headers - The array of execution headers.
+     * @returns The parsed array of headers.
+     */
+    parseHeaders(headers: any[]) {
         return headers || [];
     }
 
-    parseEnumValue(value: string, enumType: any){
+    /**
+     * Parse an enumeration value.
+     * @param value - The value to parse.
+     * @param enumType - The enumeration type.
+     * @returns The parsed enumeration value.
+     */
+    parseEnumValue(value: string, enumType: any) {
         return parseEnumValue(value, enumType);
     }
 }
 
-function createExecutionModel<T>(data: T){
+/**
+ * Create a new execution model.
+ * @template T - The type of the response body.
+ * @param data - Data for initializing the execution model.
+ * @returns A new ExecutionModel instance.
+ */
+function createExecutionModel<T>(data: T) {
     return new ExecutionModel<T>(data);
 }
 
-export { ExecutionModel, createExecutionModel }
+export { ExecutionModel, createExecutionModel };
