@@ -1,5 +1,19 @@
 <script lang="ts">
-    import { Heading } from "$lib/ui/widgets";
+	import Separator from "$lib/ui/components/separator/separator.svelte";
+	import AccountForm from "$lib/features/settings/widgets/forms/account-form.svelte";
+	import type { PageData } from "./$types";
+
+	export let data: PageData;
 </script>
 
-<Heading text="Account" />
+<div class="space-y-6">
+	<div>
+		<h3 class="text-lg font-medium">Account</h3>
+		<p class="text-sm text-muted-foreground">
+			Update your account settings. Set your preferred language and
+			timezone.
+		</p>
+	</div>
+	<Separator />
+	<AccountForm data={data.form} />
+</div>

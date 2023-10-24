@@ -43,7 +43,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="flex-1 space-y-4 p-8 pt-6">
+		<div class="flex-1 p-8">
 				<slot />
 		</div>
 	</div>

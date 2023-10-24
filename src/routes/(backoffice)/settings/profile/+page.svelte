@@ -1,5 +1,17 @@
 <script lang="ts">
-    import { Heading } from "$lib/ui/widgets";
+	import type { PageData } from "./$types";
+	import ProfileForm from "$lib/features/settings/widgets/profile-form.svelte";
+	import Separator from "$lib/ui/components/separator/separator.svelte";
+	export let data: PageData;
 </script>
 
-<Heading text="Profile" />
+<div class="space-y-6">
+	<div>
+		<h3 class="text-lg font-medium">Profile</h3>
+		<p class="text-sm text-muted-foreground">
+			This is how others will see you on the site.
+		</p>
+	</div>
+	<Separator />
+	<ProfileForm data={data.form} />
+</div>
