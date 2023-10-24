@@ -118,13 +118,13 @@ type SEO = {
     }
 }
 
-enum ExecutionTriggers {
+export enum ExecutionTriggers {
     http,
     schedule,
     event
 }
 
-enum ExecutionStatus {
+export enum ExecutionStatus {
     processing,
     completed,
     failed
@@ -136,8 +136,8 @@ type CommonExecutionProperties<T> = {
     $createdAt: string
     $updatedAt: string
     $permissions: string[]
-    funtionId: string
-    $trigger: ExecutionTriggers
+    funtionId?: string
+    $trigger?: ExecutionTriggers
     status: ExecutionStatus
     requestMethod: string
     requestPath: string
@@ -151,14 +151,23 @@ type CommonExecutionProperties<T> = {
 }
 
 type ExecutionListData<T> = {
-    tota: number
+    total: number
     executions: T[]
 }
 
-export type { 
-    AccountData, SessionData, CoreData, 
-    LanguageListData, DocumentListData, 
+type ExecutionPlaceHolderData = {
+
+} 
+
+type ExecutionData<T> = {
+
+} & CommonExecutionProperties<T>;
+
+export type {
+    AccountData, SessionData, CoreData,
+    LanguageListData, DocumentListData,
     UserData, GlobalDocumentProperties, DocumentData,
     SEO, CommonExecutionProperties, ExecutionListData,
-    ExecutionTriggers, ExecutionStatus
+    ExecutionPlaceHolderData,
+    ExecutionData, ExtraData
 };
