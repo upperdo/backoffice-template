@@ -41,10 +41,6 @@ class BaseDocumentModel {
  * @template T - The type for additional properties.
  */
 class DocumentModel<T> extends BaseDocumentModel {
-    /**
-     * Additional properties of the document model.
-     */
-    additionalProperties: T;
 
     /**
      * Create a new DocumentModel instance.
@@ -53,7 +49,7 @@ class DocumentModel<T> extends BaseDocumentModel {
     constructor(data: T & Partial<BaseDocumentModel>) {
         super(data);
         Object.assign(this, data);
-        this.additionalProperties = data;
+        //this.atrribures = data;
     }
 }
 
