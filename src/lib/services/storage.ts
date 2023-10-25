@@ -15,9 +15,9 @@ async function listFiles(bucketId: string, queries?: any[], search?: string, log
 
         const files: FileListData<StorageModel> = {
             total: result.total,
-            files: result.files.map((file) => new StorageModel(file))
+            files: result.files.map((file) => new StorageModel(file).createStorageModel(file) as StorageModel)
         }
-
+        
         return files;
     }catch(error){
         if(error instanceof BackendPlatform.AppwriteException){

@@ -69,16 +69,18 @@ class StorageModel {
     * Convert the StorageModel to a plain object without the StorageModel wrapper.
     * @returns {object} - The plain object with storage properties.
     */
-    static toPlainObject(storageModel: StorageModel): Omit<StorageModel, 'toPlainObject'>{
-        const { ...rest } = storageModel;
+    static toPlainObject(storageModel: StorageModel): Omit<StorageModel, 'toPlainObject'> {
+        const { createStorageModel, ...rest } = storageModel;
+        // @ts-ignore
         return rest;
     }
 
-    static createStorageModel(data: StorageModel){
+     createStorageModel(data: any){
         const storageModel = new StorageModel(data);
-        return this.toPlainObject(storageModel);
+        return StorageModel.toPlainObject(storageModel);
     }
     
 }
+
 
 export { StorageModel }
