@@ -1,6 +1,7 @@
 import { LoggerUtility } from "$lib/common/logger/logger_utility";
 import BackendPlatform from "$lib/platforms";
-import type { DocumentListData, DocumentData, GlobalDocumentProperties } from "$lib/common/constants/types";
+import type { DocumentListData } from "$lib/common/constants/types";
+import { DocumentModel, createDocumentModel } from "./models/DocumentModel";
 
 /**
  * @name listDocuments
@@ -9,18 +10,19 @@ import type { DocumentListData, DocumentData, GlobalDocumentProperties } from "$
  * @param queries 
  * @param logger 
  * @description Get a list of all the user's documents in a given collection. You can use the query params to filter your results.
- * @returns DocumentList<T>
+ * @returns DocumentModel<T>
  */
-async function listDocuments<T>(databseId: string, collectionId:string, queries?: any[], logger: typeof LoggerUtility = LoggerUtility): Promise<DocumentListData<T>>{
+async function listDocuments<T>(databseId: string, collectionId:string, queries?: any[], logger: typeof LoggerUtility = LoggerUtility): Promise<DocumentListData<DocumentModel<T>>>{
     const filePath = "lib/services/databases/ listDocuments"
     try {
         const result = await BackendPlatform.databases.listDocuments(databseId, collectionId, queries);
-        // @ts-ignore
-        const documents: T[] = result.documents;
-        return {
+        
+        const documents: DocumentListData<DocumentModel<T>> = {
             total: result.total,
-            documents
+            documents: result.documents.map((documentData) => createDocumentModel<DocumentModel<T>>(documentData))
         }
+        
+        return documents;
     }catch(error){
         if(error instanceof BackendPlatform.AppwriteException){
             logger.error(`Appwrite exception: ${error.message} in:`, filePath);
@@ -31,7 +33,7 @@ async function listDocuments<T>(databseId: string, collectionId:string, queries?
         return {
             total: 0,
             documents: []
-        }
+        } as DocumentListData<DocumentModel<T>>
     }
 }
 
@@ -43,14 +45,14 @@ async function listDocuments<T>(databseId: string, collectionId:string, queries?
  * @param permissions 
  * @param logger 
  * @description Create a new Document. Before using this route, you should create a new collection resource using either a server integration API or directly from your database console.
- * @returns DocumentData<T>
+ * @returns DocumentModel<T>
  */
-async function createDocument<T extends GlobalDocumentProperties>(databseId: string, collectionId:string, data = {}, permissions?: string[],logger: typeof LoggerUtility = LoggerUtility): Promise<DocumentData<T> | null>{
+async function createDocument<T>(databseId: string, collectionId:string, data = {}, permissions?: string[],logger: typeof LoggerUtility = LoggerUtility): Promise<DocumentModel<T> | null>{
     const filePath = "lib/services/databases/ createDocument"
     try {
         const result = await BackendPlatform.databases.createDocument(databseId, collectionId, BackendPlatform.ID.unique(), data, permissions);
-        // @ts-ignore
-        const document: T = result;
+        
+        const document: DocumentModel<T> = createDocumentModel(result);
         return document;
     }catch(error){
         if(error instanceof BackendPlatform.AppwriteException){
@@ -69,14 +71,14 @@ async function createDocument<T extends GlobalDocumentProperties>(databseId: str
  * @param queries 
  * @param logger 
  * @description Get a document by its unique ID. This endpoint response returns a JSON object with the document data.
- * @returns DocumentData<T>
+ * @returns DocumentModel<T>
  */
-async function getDocument<T extends GlobalDocumentProperties>(databseId: string, collectionId:string, documentId: string, queries?: string[], logger: typeof LoggerUtility = LoggerUtility): Promise<DocumentData<T> | null>{
+async function getDocument<T>(databseId: string, collectionId:string, documentId: string, queries?: string[], logger: typeof LoggerUtility = LoggerUtility): Promise<DocumentModel<T> | null>{
     const filePath = "lib/services/databases/ getDocument"
     try {
         const result = await BackendPlatform.databases.getDocument(databseId, collectionId, documentId, queries);
-       // @ts-ignore
-        const document: T = result;
+
+        const document: DocumentModel<T> = createDocumentModel(result);
         return document;
     }catch(error){
         if(error instanceof BackendPlatform.AppwriteException){
@@ -97,14 +99,14 @@ async function getDocument<T extends GlobalDocumentProperties>(databseId: string
  * @param permissions 
  * @param logger 
  * @description Update a document by its unique ID. Using the patch method you can pass only specific fields that will get updated.
- * @returns DocumentData<T>
+ * @returns DocumentModel<T>
  */
-async function updateDocument<T extends GlobalDocumentProperties>(databseId: string, collectionId:string, documentId: string, data = {}, permissions?: string[], logger: typeof LoggerUtility = LoggerUtility): Promise<DocumentData<T>| null> {
+async function updateDocument<T>(databseId: string, collectionId:string, documentId: string, data = {}, permissions?: string[], logger: typeof LoggerUtility = LoggerUtility): Promise<DocumentModel<T>| null> {
     const filePath = "lib/services/databases/ updateDocument"
     try {
         const result = await BackendPlatform.databases.updateDocument(databseId, collectionId, documentId, data, permissions);
-         // @ts-ignore
-        const document: T = result;
+       
+        const document: DocumentModel<T> = createDocumentModel(result);
         return document;
     }catch(error){
         if(error instanceof BackendPlatform.AppwriteException){
