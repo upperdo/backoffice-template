@@ -9,7 +9,7 @@
 </script>
 
 {#if CONSTANTS.CORE.debug && !isObjectEmpty(data)}
-  <div class="bg-gray-700 text-white p-4 rounded-md my-4">
+  <div class="bg-gray-700 text-white p-4 rounded-md my-4 w-full">
     <pre>
       {#each Object.entries(data) as [key, value] (key)}
           <div class="flex w-full flex-wrap overflow-x-auto">

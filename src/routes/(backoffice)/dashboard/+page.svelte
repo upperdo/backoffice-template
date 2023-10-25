@@ -8,5 +8,3 @@
 </script>
 
 <DashboardPage />
-
-<DebugObject data={leads} />

@@ -1,5 +1,6 @@
 <script lang="ts">
 	// Core
+	import { DebugBar } from '$lib/ui/widgets';
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
 	import CONSTANTS from '$lib/common/constants';
@@ -10,13 +11,11 @@
 	
 	// Stores
 	import { InitLocaleStore, LocaleStore, LanguageStore } from '$lib/stores/locale';
-
 	// Components
 	import { Seo } from '$lib/ui/components';
 
 	// styles
 	import '../app.postcss';
-	import { goto } from '$app/navigation';
 
 	// Variables
 	let userLocale:string;
@@ -37,5 +36,8 @@
 </script>
 <Seo seoConfig={CONSTANTS.CORE.seoConfig} />
 {#if browser && !loadingLanguage}
+	{#if CONSTANTS.CORE.debug === 'true'}
+		<DebugBar />
+	{/if}
 	<slot />
 {/if}
