@@ -2,6 +2,11 @@
 
 Everything you need to build an Administration Panel Using Svelte/SvelteKit and AppWrite
 
+## Screenshots
+![Screen 1](screenshots/01.png)
+![Screen 2](screenshots/02.png)
+![Screen 3](screenshots/03.png)
+
 ## Development
 
 If you want to begin the development process, follow this guide.
