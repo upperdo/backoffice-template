@@ -32,7 +32,7 @@
 	<title>Dashboard</title>
 </svelte:head>
 {#if $AccountStore}
-	<div class="hidden flex-col md:flex">
+	<div class="flex flex-col">
 		<div class="border-b">
 			<div class="flex h-16 items-center px-4">
 				<DashboardMainNav class="mx-6" />
