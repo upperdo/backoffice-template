@@ -6,6 +6,7 @@ import COLORS from "./colors";
 import ENUMS from "./enums";
 import APP_PATHS from "./paths";
 import CORE from "./core";
+import { DATABASE_CONFIG } from "./database";
 
 
 
@@ -20,6 +21,7 @@ const CONSTANTS = {
     COLORS,
     ENUMS,
     APP_PATHS,
-    CORE
+    CORE,
+    DATABASE_CONFIG
 }
 export default CONSTANTS;
