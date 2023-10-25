@@ -51,7 +51,25 @@ async function createFile(bucketId: string, fileId: File, permissions?: string[]
     }
 }
 
+async function getFile(bucketId: string, fileId: string, logger: typeof LoggerUtility = LoggerUtility): Promise<StorageModel | null>{
+    const filePath = "lib/services/storage/ createFile";
+    try {
+        const result = await BackendPlatform.storage.getFile(bucketId, fileId);
+        const file: StorageModel = new StorageModel(result).createStorageModel(result);
+
+        return file;
+    }catch(error){
+        if(error instanceof BackendPlatform.AppwriteException){
+            logger.error(`Appwrite exception: ${error.message} in:`, filePath);
+        }else{
+            logger.error(`An error ocurred: ${error} in:`, filePath)
+        }
+        return null;
+    }
+}
+
 export {
     listFiles,
-    createFile
+    createFile,
+    getFile
 }
