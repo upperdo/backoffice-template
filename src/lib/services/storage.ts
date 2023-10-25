@@ -17,7 +17,7 @@ async function listFiles(bucketId: string, queries?: any[], search?: string, log
             total: result.total,
             files: result.files.map((file) => new StorageModel(file).createStorageModel(file) as StorageModel)
         }
-        
+
         return files;
     }catch(error){
         if(error instanceof BackendPlatform.AppwriteException){
@@ -33,6 +33,25 @@ async function listFiles(bucketId: string, queries?: any[], search?: string, log
     }
 }
 
+
+async function createFile(bucketId: string, fileId: File, permissions?: string[], logger: typeof LoggerUtility = LoggerUtility): Promise<StorageModel| null>{
+    const filePath = "lib/services/storage/ createFile";
+    try {
+        const result = await BackendPlatform.storage.createFile(bucketId, BackendPlatform.ID.unique(), fileId, permissions);
+        const file: StorageModel = new StorageModel(result).createStorageModel(result);
+
+        return file;
+    }catch(error){
+        if(error instanceof BackendPlatform.AppwriteException){
+            logger.error(`Appwrite exception: ${error.message} in:`, filePath);
+        }else{
+            logger.error(`An error ocurred: ${error} in:`, filePath)
+        }
+        return null;
+    }
+}
+
 export {
-    listFiles
+    listFiles,
+    createFile
 }
