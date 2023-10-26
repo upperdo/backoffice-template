@@ -1,10 +1,21 @@
 import type { Handle } from "@sveltejs/kit";
-import type { DebugStoreData } from "$lib/ui/widgets/debug-bar/types";
-import { getMemoryUsageInMB } from "$lib/ui/widgets/debug-bar/utils/getMemoryUsageInMb";
+import CONSTANTS from "$lib/common/constants";
+import SSRAppwriteClient from "$lib/platforms/appwrite/SSRAppwriteClient";
+import type { AccountData } from "$lib/common/constants/types";
 
 export const handle: Handle = async ({ event, resolve }) => {
 
-    const memoryUsage = getMemoryUsageInMB();
+    const session = event.cookies.get(`${CONSTANTS.getCookieName()}`);
 
-    return resolve(event);
+    if(!session){
+        return await resolve(event);
+    }else{
+        // Todo: Create a Model to do the type and Wait for SSR Support
+        // @ts-ignore
+        //const user: AccountData = await SSRAppwriteClient.getInstance(cookieName).account.get() as AccountData;
+        //console.log("user", user);
+    } 
+
+
+    return await resolve(event);
 }

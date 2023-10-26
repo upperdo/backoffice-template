@@ -8,8 +8,6 @@
 	import * as DropdownMenu from "$lib/ui/components/dropdown-menu";
 	import * as Avatar from "$lib/ui/components/avatar";
 	import { Button } from "$lib/ui/components/button";
-
-    export let logout: VoidFunction;
 </script>
 
 <DropdownMenu.Root positioning={{ placement: "bottom-end" }}>
@@ -49,9 +47,12 @@
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
-		<DropdownMenu.Item on:click={logout}>
-			Log out
-			<DropdownMenu.Shortcut>⇧⌘Q</DropdownMenu.Shortcut>
-		</DropdownMenu.Item>
+		<form action="/logout" method="POST" class="w-full">
+			<DropdownMenu.Item>
+				<button type="submit" class="w-full flex items-start">
+					Log out
+				</button>
+			</DropdownMenu.Item>
+		</form>
 	</DropdownMenu.Content>
 </DropdownMenu.Root>

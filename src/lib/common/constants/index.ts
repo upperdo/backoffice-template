@@ -22,6 +22,8 @@ const CONSTANTS = {
     ENUMS,
     APP_PATHS,
     CORE,
-    DATABASE_CONFIG
+    DATABASE_CONFIG,
+    getCookieName: () => `a_session_${API_CONSTANTS.PROJECT_ID}_legacy`,
+    
 }
 export default CONSTANTS;

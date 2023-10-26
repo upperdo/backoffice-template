@@ -6,60 +6,54 @@
 	import { Button } from "$lib/ui/components/button";
 	import { Input } from "$lib/ui/components/input";
 	import { Label } from "$lib/ui/components/label";
-	import { CheckIfUserIsLoggedIn, cn } from "$lib/common/utils/";
+	import { cn } from "$lib/common/utils/";
+	import { enhance } from "$app/forms";
+	import type { SubmitFunction } from "@sveltejs/kit";
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
-	let isLoading = false;
-	let email = '';
-	let password = '';
-
-	async function onSubmit() {
-		isLoading = true;
-
-		await AccountService.createEmailSession(email, password);
-		await InitAccountStore();
-		CheckIfUserIsLoggedIn($AccountStore);
-
-		setTimeout(() => {
-			email = '';
-			password = '';
-			isLoading = false;
-		}, 3000);
-	}
+	export let loading = false;
+	
+	export let form: any ;
+	export let onSubmit: SubmitFunction;
 </script>
 
 <div class={cn("grid gap-6", className)} {...$$restProps}>
-	<form on:submit|preventDefault={onSubmit}>
+	<form method="POST" action="?/login" use:enhance={onSubmit}>
 		<div class="grid gap-2">
+			{#if form?.credentials}
+				<div class="text-red-500 w-full text-center font-semibold text-sm">
+					Please check your email and password.
+				</div>
+			{/if}
 			<div class="grid gap-2">
 				<Label class="text-gray-500" for="email">{$LanguageStore.emailInputLabel}</Label>
 				<Input
 					id="email"
+					name="email"
 					placeholder={$LanguageStore.emailInputPlaceHolderText}
 					type="email"
 					autocapitalize="none"
 					autocomplete="email"
 					autocorrect="off"
-					disabled={isLoading}
-					bind:value={email}
+					disabled={loading}
 				/>
 				<div></div>
 				<Label class="text-gray-500" for="password">{$LanguageStore.passwordInputLabel}</Label>
 				<Input
 					id="password"
+					name="password"
 					placeholder={$LanguageStore.passwordInputPlaceHolderText}
 					type="password"
 					autocapitalize="none"
 					autocomplete="off"
 					autocorrect="off"
-					disabled={isLoading}
-					bind:value={password}
+					disabled={loading}
 				/>
 			</div>
-			<Button disabled={isLoading}>
-				{#if isLoading}
+			<Button disabled={loading}>
+				{#if loading}
 					<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
 				{/if}
 				Login

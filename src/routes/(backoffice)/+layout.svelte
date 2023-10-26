@@ -1,8 +1,7 @@
 <script lang="ts">
 	// Core
 	import CONSTANTS from '$lib/common/constants';
-	import { AccountService } from '$lib/services';
-	import { AccountStore, LogoutAccountStore } from '$lib/stores';
+	import { AccountStore } from '$lib/stores';
 	
 	// Localization
 	import { LanguageSwitcher } from "$lib/ui/widgets";
@@ -10,7 +9,6 @@
 	
 	// Stores
 	import { LocaleStore } from '$lib/stores/locale';
-	import { CheckIfUserIsLoggedIn } from '$lib/common/utils';
 
 	// Components
 	import {
@@ -22,11 +20,6 @@
 	// Variables
 
 	// Functions
-	const logout = async () => {
-		await AccountService.deleteSession();
-		LogoutAccountStore();
-		CheckIfUserIsLoggedIn($AccountStore);
-	}
 </script>
 <svelte:head>
 	<title>Dashboard</title>
@@ -39,7 +32,7 @@
 				<div class="ml-auto flex items-center space-x-4">
 					<Search />
 					<LanguageSwitcher {languageSwitcherFunc} languageList={CONSTANTS.CORE.languageList} bind:value={$LocaleStore} />
-					<UserNav {logout} />
+					<UserNav  />
 				</div>
 			</div>
 		</div>

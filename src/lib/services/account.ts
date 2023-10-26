@@ -24,6 +24,21 @@ async function createEmailSession(email: string, password:string, logger: typeof
     }
 }
 
+async function createJwt(logger: typeof LoggerUtility = LoggerUtility){
+    const filePath = "lib/services/databases/ createJwt";
+    try {
+
+       return await BackendPlatform.account.createJWT();
+    }catch(error){
+        if(error instanceof BackendPlatform.AppwriteException){
+            logger.error(`Appwrite exception: ${error.message} in:`, filePath);
+        } else {
+            logger.error(`An error ocurred: ${error} in:`, filePath)
+        }
+        return null
+    }
+}
+
 /**
  * @name getAccount
  * @param logger 
@@ -68,6 +83,7 @@ async function deleteSession(sessionId:string = 'current', logger: typeof Logger
 }
 
 export {
+    createJwt,
     createEmailSession,
     getAccount,
     deleteSession

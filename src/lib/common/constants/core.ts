@@ -9,6 +9,7 @@ const CORE: CoreData = {
     defaultLocale: 'en_US',
     storageLocalePropertyName: 'locale',
     selectedPlatform: PUBLIC_SELECTED_PLATFORM || 'appwrite',
+    cookieName: 'a_session_65362ff2bb43ea762b02_legacy',
     seoConfig: {
         title: 'App Name',
         company: 'Your Company',
