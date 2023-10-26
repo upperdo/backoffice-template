@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { InitAccountStore, AccountStore } from "$lib/stores";
-	import { AccountService } from "$lib/services";
 	import { LanguageStore } from "$lib/stores/locale";
 	import { Icons } from "$lib/ui/components/icons";
 	import { Button } from "$lib/ui/components/button";
