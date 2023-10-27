@@ -28,6 +28,36 @@ copy .env.example .env
 pnpm dev
 ```
 
+## Appwrite
+There's an appwrite folder in the root of the project, it contains the base functions, database and collections for the project.
+
+there's also a bash script that can be run with ./login_appwrite.sh, it will promp to login to appwrite instance that you spesify in the .env, see .env.example
+
+## Events
+To use the events handler simple follow:
+
+```bash
+# import event list
+import EVENTS from $lib/common/constants/events
+# import dispatchEvent
+import dispatchEvent from $lib/common/events/event-bus
+
+# have some payload ready to send
+const payload = {
+    name: 'demo',
+    notifications: {
+        email: true,
+        sms: true
+    }
+}
+
+# use the function on the component that you want to trigger the event,
+<button on:click={() => dispatchEvent(EVENTS.UPDATE_PROFILE, payload)} >hi</button>
+
+# Add as many more handlers and events as need it
+
+```
+
 ## Folder Structure
 The project is well organized into the following folder structure, and use route grouping.
 

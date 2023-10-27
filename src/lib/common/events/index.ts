@@ -1,19 +1,15 @@
 import EVENTS from "$lib/common/constants/events";
+import { handleCreatePost, handleUpdateUser } from "./handlers";
+import type { UpdateProfilePayload } from "./handlers/interfaces";
+
 
 export async function switchEvents(event: string, payload: any){
     switch(event){
         case EVENTS.SEARCH_TERM:
-          handleCreatePost(payload);
+          handleCreatePost<string>(payload);
           break;
         case EVENTS.UPDATE_PROFILE:
-          handleUpdateUser(payload)
+          handleUpdateUser<UpdateProfilePayload>(payload)
     }
 }
 
-function handleUpdateUser(payload: any) {
-    console.log("Handling 'update_profile' event with payload:", payload);
-}
-  
-function handleCreatePost(payload: any) {
-    console.log("Handling 'create_post' event with payload:", payload);
-}

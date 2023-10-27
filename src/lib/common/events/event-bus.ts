@@ -44,7 +44,7 @@ for( const key in EVENTS ){
 }
 
 
-export function dispatchEvent<T>(event: string, data: T, func: typeof eventBus = eventBus): void{
+export function dispatchEvent<T>(event: string, data: T): void{
   eventBus.emit(event, data);
 }
 
