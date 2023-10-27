@@ -9,7 +9,8 @@ declare global {
 		// interface Error {}
 		interface Locals {
 			debugData: DebugStoreData,
-			accoundData: AccountData
+			accoundData: AccountData | null,
+			ssrTokenExpired: boolean
 		}
 		// interface PageData {}
 		// interface Platform {}

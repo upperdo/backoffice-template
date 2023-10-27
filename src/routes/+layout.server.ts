@@ -1,6 +1,6 @@
-import type { PageServerLoad } from "./(backoffice)/dashboard/$types";
+import type { LayoutServerLoad } from "./$types";
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: LayoutServerLoad = async ({ locals  }) => {
     return {
         
     }

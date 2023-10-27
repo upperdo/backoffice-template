@@ -20,6 +20,9 @@ dependencies:
   d3-scale:
     specifier: ^4.0.2
     version: 4.0.2
+  dotenv:
+    specifier: ^16.3.1
+    version: 16.3.1
   formsnap:
     specifier: ^0.2.0
     version: 0.2.0(svelte@4.2.2)(sveltekit-superforms@1.8.0)(zod@3.22.4)
@@ -1998,6 +2001,11 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dotenv@16.3.1:
+    resolution: {integrity: sha512-IPzF4w4/Rd94bA9imS68tZBaYyBWSCE47V1RGuMrB94iyTOIEwRmVL2x/4An+6mETpLrKJ5hQkB8W4kFAadeIQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /earcut@2.2.4:
     resolution: {integrity: sha512-/pjZsA1b4RPHbeWZQn66SWS8nZZWLQQ23oE3Eam7aroEFGEvwKAsJfZ9ytiEMycfzXWpca4FA9QIOehf7PocBQ==}

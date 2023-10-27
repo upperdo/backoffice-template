@@ -13,10 +13,7 @@
 		Overview
 	</a>
 
-	<a
-		href="/dashboard"
-		class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-	>
+	<a href="/dashboard" class="text-sm font-medium text-muted-foreground transition-colors hover:text-primary">
 		Customers
 	</a>
 	<a

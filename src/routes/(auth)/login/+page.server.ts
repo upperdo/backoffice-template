@@ -5,13 +5,13 @@ import { parseCookie } from "$lib/common/utils/parseCookie";
 import { SleepUtil } from "$lib/common/utils";
 
 
-export const load: PageServerLoad = async ({ locals }) => {
+export const load: PageServerLoad = async ({  }) => {
     return {
         
     }
 }
 
-const login: Action = async ({ cookies, request, fetch }) => {
+const login: Action = async ({ cookies, request, fetch, locals }) => {
     const data = await request.formData();
 
     const email = data.get('email');
@@ -58,6 +58,8 @@ const login: Action = async ({ cookies, request, fetch }) => {
         expires: new Date(cookiePa.expires),
         domain: 'localhost'
    });
+
+   
 
    throw redirect(303, CONSTANTS.APP_PATHS.routes.backoffice);
 }

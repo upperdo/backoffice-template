@@ -20,6 +20,7 @@
 	// Variables
 
 	// Functions
+
 </script>
 <svelte:head>
 	<title>Dashboard</title>
@@ -28,7 +29,7 @@
 	<div class="flex flex-col">
 		<div class="border-b">
 			<div class="flex h-16 items-center px-4">
-				<DashboardMainNav class="mx-6" />
+				<DashboardMainNav  class="mx-6" />
 				<div class="ml-auto flex items-center space-x-4">
 					<Search />
 					<LanguageSwitcher {languageSwitcherFunc} languageList={CONSTANTS.CORE.languageList} bind:value={$LocaleStore} />
