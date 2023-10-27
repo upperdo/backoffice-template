@@ -39,7 +39,7 @@ type AccountData = {
     hashOptions: {}
     registration: string,
     status: boolean
-    labels: string
+    labels: string[]
     passwordUpdate: string
     email: string
     phone: string

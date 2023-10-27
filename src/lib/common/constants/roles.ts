@@ -5,7 +5,11 @@
  */
 const ROLES = {
     "/dashboard": ["admin", "staff"],
-    "/sales": ["admin", "staff", "sale"],
+    "/sales": ["billing", "sale"],
+    "/settings": ["admin", "staff"],
+    "/settings/profile": ["admin", "staff"],
+    "/settings/account": ["admin", "staff"],
+    "/settings/security": ["admin", "staff"],
 }
 
 export default ROLES;

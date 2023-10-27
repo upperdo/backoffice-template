@@ -1,8 +1,10 @@
 <script lang="ts">
+	// @ts-nocheck
     // Core
     // Stores
     import { AccountStore } from "$lib/stores";
     import { AvatarService } from "$lib/services";
+	import { LanguageStore } from "$lib/stores/locale";
 
     // Components
 	import * as DropdownMenu from "$lib/ui/components/dropdown-menu";
@@ -36,21 +38,21 @@
 		<DropdownMenu.Group>
 			<DropdownMenu.Item>
 				<a href="/settings/profile">
-					Profile
+					{$LanguageStore.menu.profile}
 				</a>
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>
-				<a href="/settings/account">Account</a>
+				<a href="/settings/account">{$LanguageStore.menu.account}</a>
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>
-				<a href="/settings/security">Security</a>
+				<a href="/settings/security">{$LanguageStore.menu.security}</a>
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
 		<form action="/logout" method="POST" class="w-full">
 			<DropdownMenu.Item>
 				<button type="submit" class="w-full flex items-start">
-					Log out
+					{$LanguageStore.menu.logout}
 				</button>
 			</DropdownMenu.Item>
 		</form>
