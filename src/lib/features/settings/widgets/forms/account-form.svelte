@@ -30,7 +30,7 @@
 			.min(2, "Email must be at least 2 characters.")
 			.max(30, "Email must not be longer than 30 characters"),
 		// Hack: https://github.com/colinhacks/zod/issues/2280
-		language: z.enum(Object.keys(languages) as [Language, ...Language[]])
+		//language: z.enum(Object.keys(languages) as [Language, ...Language[]])
 	});
 
 	export type AccountFormSchema = typeof accountFormSchema;
@@ -72,7 +72,7 @@
 			<Form.Validation />
 		</Form.Field>
 	</Form.Item>
-	<Form.Item>
+	<!-- <Form.Item>
 		<Form.Field {config} name="language" let:attrs>
 			{@const { value } = attrs.input}
 			<Form.Label>Language</Form.Label>
@@ -97,6 +97,6 @@
 			</Form.Description>
 			<Form.Validation />
 		</Form.Field>
-	</Form.Item>
+	</Form.Item> -->
 	<Form.Button>Update account</Form.Button>
 </Form.Root>

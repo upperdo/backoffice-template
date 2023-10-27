@@ -1,6 +1,7 @@
 import type { ExecutionTriggers as ExecutionTriggersType, ExecutionStatus as ExecutionStatusType, ExtraData } from "$lib/common/constants/types";
 import { ExecutionStatus, ExecutionTriggers } from "$lib/common/constants/types";
 import { parseEnumValue } from "$lib/common/utils";
+import { boolean } from "zod";
 
 /**
  * Class representing an execution model.
@@ -30,7 +31,7 @@ class ExecutionModel<T> {
     /**
      * The function identifier associated with the execution, if available.
      */
-    funtionId?: string;
+    functionId?: string;
     
     /**
      * The trigger type of the execution.
@@ -91,14 +92,14 @@ class ExecutionModel<T> {
      * Create a new ExecutionModel instance.
      * @param data - Data for initializing the execution model.
      */
-    constructor(data: any) {
+    constructor(data: any, parse: boolean = false) {
         this.$id = data.$id || '';
         this.$createdAt = data.$createdAt || '';
         this.$updatedAt = data.$updatedAt || '';
         this.$permissions = data.$permissions || '';
-        this.funtionId = data.function || '';
-        this.trigger = this.parseTrigger(data.trigger);
-        this.status = this.parseStatus(data.status);
+        this.functionId = data.functionId || '';
+        this.trigger = data.trigger || '';
+        this.status = data.status || '';
         this.requestMethod = data.requestMethod || '';
         this.requestPath = data.requestPath || '';
         this.requestHeaders = this.parseHeaders(data.requestHeaders);
@@ -107,7 +108,7 @@ class ExecutionModel<T> {
         this.logs = data.logs || '';
         this.errors = data.errors || '';
         this.duration = data.duration || 0;
-        this.responseBody = data.responseBody || '';
+        this.responseBody = parse? ExecutionModel.#parseBody(data.responseBody) : data.responseBody || '';
     }
 
     /**
@@ -146,6 +147,33 @@ class ExecutionModel<T> {
     parseEnumValue(value: string, enumType: any) {
         return parseEnumValue(value, enumType);
     }
+
+    /**
+     * 
+     * @param data 
+     * @returns 
+     */
+    static #parseBody(data: any){
+        return JSON.parse(data);
+    }
+
+    /**
+     * 
+     * @param data 
+     * @returns 
+     */
+    serialize(data: any){
+        JSON.stringify(data)
+    }
+
+    /**
+     * 
+     * @param data 
+     * @returns 
+     */
+    unserialize<T>(data: any): T{
+        return JSON.parse(data);
+    }
 }
 
 /**
@@ -154,8 +182,8 @@ class ExecutionModel<T> {
  * @param data - Data for initializing the execution model.
  * @returns A new ExecutionModel instance.
  */
-function createExecutionModel<T>(data: T) {
-    return new ExecutionModel<T>(data);
+function createExecutionModel<T>(data: T, parse: boolean = false) {
+    return new ExecutionModel<T>(data, parse);
 }
 
 export { ExecutionModel, createExecutionModel };

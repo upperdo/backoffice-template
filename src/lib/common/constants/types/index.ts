@@ -77,7 +77,8 @@ type CoreData = {
     storageLocalePropertyName: string,
     selectedPlatform: string
     languageList: LanguageListData[],
-    seoConfig: SEO
+    seoConfig: SEO,
+    cookieName: string
 } & ExtraData;
 
 

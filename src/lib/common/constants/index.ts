@@ -7,6 +7,8 @@ import ENUMS from "./enums";
 import APP_PATHS from "./paths";
 import CORE from "./core";
 import { DATABASE_CONFIG } from "./database";
+import ROLES from "./roles";
+import EVENTS from "./events";
 
 
 
@@ -22,6 +24,10 @@ const CONSTANTS = {
     ENUMS,
     APP_PATHS,
     CORE,
-    DATABASE_CONFIG
+    DATABASE_CONFIG,
+    ROLES,
+    EVENTS,
+    getCookieName: () => `a_session_${API_CONSTANTS.PROJECT_ID}_legacy`,
+    
 }
 export default CONSTANTS;

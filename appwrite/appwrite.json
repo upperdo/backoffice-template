@@ -1,0 +1,361 @@
+{
+    "projectId": "65362ff2bb43ea762b02",
+    "projectName": "Devel",
+    "databases": [
+        {
+            "$id": "core",
+            "name": "core",
+            "$createdAt": "2023-10-26T01:28:00.000+00:00",
+            "$updatedAt": "2023-10-26T01:28:00.000+00:00"
+        },
+        {
+            "$id": "app",
+            "name": "app",
+            "$createdAt": "2023-10-26T01:28:00.000+00:00",
+            "$updatedAt": "2023-10-26T01:28:00.000+00:00"
+        }
+    ],
+    "collections": [
+        {
+            "$id": "roles",
+            "databaseId": "core",
+            "name": "roles",
+            "enabled": true,
+            "documentSecurity": false,
+            "$permissions": [
+                "read(\"any\")"
+            ],
+            "attributes": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 40,
+                    "default": null
+                },
+                {
+                    "key": "description",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "size": 100,
+                    "default": null
+                },
+                {
+                    "key": "actions",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": true,
+                    "size": 40,
+                    "default": null
+                },
+                {
+                    "key": "isActive",
+                    "type": "boolean",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "default": false
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "default",
+                    "type": "key",
+                    "status": "availalbe",
+                    "attributes": [
+                        "$id",
+                        "$createdAt"
+                    ],
+                    "orders": [
+                        "DESC",
+                        "DESC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "users",
+            "databaseId": "core",
+            "name": "users",
+            "enabled": true,
+            "documentSecurity": true,
+            "$permissions": [
+                "create(\"any\")"
+            ],
+            "attributes": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 40,
+                    "default": null
+                },
+                {
+                    "key": "lastName",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "size": 40,
+                    "default": null
+                },
+                {
+                    "key": "email",
+                    "type": "email",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "default": null
+                },
+                {
+                    "key": "roles",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": true,
+                    "size": 45,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "default",
+                    "type": "key",
+                    "status": "availalbe",
+                    "attributes": [
+                        "$id",
+                        "email",
+                        "$createdAt"
+                    ],
+                    "orders": [
+                        "DESC",
+                        "DESC",
+                        "DESC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "sample_collection",
+            "databaseId": "app",
+            "name": "sample_collection",
+            "enabled": true,
+            "documentSecurity": false,
+            "$permissions": [
+                "read(\"any\")",
+                "create(\"any\")"
+            ],
+            "attributes": [
+                {
+                    "key": "name",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 40,
+                    "default": null
+                },
+                {
+                    "key": "lastName",
+                    "type": "string",
+                    "status": "available",
+                    "required": false,
+                    "array": false,
+                    "size": 40,
+                    "default": null
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "default",
+                    "type": "key",
+                    "status": "availalbe",
+                    "attributes": [
+                        "$id",
+                        "$createdAt"
+                    ],
+                    "orders": [
+                        "DESC",
+                        "DESC"
+                    ]
+                }
+            ]
+        },
+        {
+            "$id": "logs",
+            "databaseId": "core",
+            "name": "logs",
+            "enabled": true,
+            "documentSecurity": false,
+            "$permissions": [],
+            "attributes": [
+                {
+                    "key": "userId",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 255,
+                    "default": null
+                },
+                {
+                    "key": "action",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 100,
+                    "default": null
+                },
+                {
+                    "key": "initial_state",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 500,
+                    "default": null
+                },
+                {
+                    "key": "final_state",
+                    "type": "string",
+                    "status": "available",
+                    "required": true,
+                    "array": false,
+                    "size": 500,
+                    "default": false
+                }
+            ],
+            "indexes": [
+                {
+                    "key": "default",
+                    "type": "key",
+                    "status": "availalbe",
+                    "attributes": [
+                        "$id",
+                        "userId",
+                        "$createdAt"
+                    ],
+                    "orders": [
+                        "DESC",
+                        "DESC",
+                        "DESC"
+                    ]
+                }
+            ]
+        }
+    ],
+    "buckets": [
+        {
+            "$id": "dev",
+            "name": "dev",
+            "enabled": true,
+            "fileSecurity": false,
+            "$permissions": [],
+            "encryption": true,
+            "antivirus": true,
+            "compression": "none",
+            "allowedFileExtensions": [],
+            "maximumFileSize": 10485760,
+            "$createdAt": "2023-10-26T01:28:00.000+00:00",
+            "$updatedAt": "2023-10-26T01:28:00.000+00:00"
+        }
+    ],
+    "functions": [
+        {
+            "$id": "userActionControl",
+            "name": "userActionControl",
+            "runtime": "node-20.0",
+            "execute": [
+                "any",
+                "guests",
+                "users"
+            ],
+            "variables": {
+                "APPWRITE_FUNCTION_ENDPOINT": "http://192.168.1.33/v1",
+                "APPWRITE_FUNCTION_API_KEY": "70fd6997c74ec06b057ab33ae433d49f3b45abd31327966614f3d0c7980d48355baff20ee84c741e72238582548de4d052456598175b43de537c074fed82735c26a73052b41394aabda32435d25f24f2b61c6573d4700830ffc0c8f61e41df9805653a9445ec11b50150e6319e87f21951f387f44457b58bee7ea900e5a535c9"
+            },
+            "events": [],
+            "schedule": "",
+            "timeout": 15,
+            "enabled": true,
+            "logging": true,
+            "entrypoint": "src/main.js",
+            "commands": "npm install",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "path": "functions/userActionControl"
+        },
+        {
+            "$id": "initUserCollection",
+            "name": "initUserCollection",
+            "runtime": "node-20.0",
+            "execute": [
+                "any",
+                "guests",
+                "users"
+            ],
+            "events": [
+                "users.*.create"
+            ],
+            "variables": {
+                "APPWRITE_FUNCTION_PROJECT_ID": "65362ff2bb43ea762b02",
+                "APPWRITE_FUNCTION_ENDPOINT": "http://192.168.1.33/v1",
+                "APPWRITE_FUNCTION_API_KEY": "70fd6997c74ec06b057ab33ae433d49f3b45abd31327966614f3d0c7980d48355baff20ee84c741e72238582548de4d052456598175b43de537c074fed82735c26a73052b41394aabda32435d25f24f2b61c6573d4700830ffc0c8f61e41df9805653a9445ec11b50150e6319e87f21951f387f44457b58bee7ea900e5a535c9",
+                "APPWRITE_DATABASE_ID": "core",
+                "APPWRITE_COLLECTION_ID": "users"
+            },
+            "schedule": "",
+            "timeout": 15,
+            "enabled": true,
+            "logging": true,
+            "entrypoint": "src/main.js",
+            "commands": "npm install",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "path": "functions/initUserCollection"
+        },
+        {
+            "$id": "onDeleteUser",
+            "name": "onDeleteUser",
+            "runtime": "node-20.0",
+            "execute": [
+                "any",
+                "guests",
+                "users"
+            ],
+            "events": [
+                "users.*.delete"
+            ],
+            "variables": {
+                "APPWRITE_FUNCTION_PROJECT_ID": "65362ff2bb43ea762b02",
+                "APPWRITE_FUNCTION_ENDPOINT": "http://192.168.1.33/v1",
+                "APPWRITE_FUNCTION_API_KEY": "70fd6997c74ec06b057ab33ae433d49f3b45abd31327966614f3d0c7980d48355baff20ee84c741e72238582548de4d052456598175b43de537c074fed82735c26a73052b41394aabda32435d25f24f2b61c6573d4700830ffc0c8f61e41df9805653a9445ec11b50150e6319e87f21951f387f44457b58bee7ea900e5a535c9",
+                "APPWRITE_DATABASE_ID": "core",
+                "APPWRITE_COLLECTION_ID": "users"
+            },
+            "schedule": "",
+            "timeout": 15,
+            "enabled": true,
+            "logging": true,
+            "entrypoint": "src/main.js",
+            "commands": "npm install",
+            "ignore": [
+                "node_modules",
+                ".npm"
+            ],
+            "path": "functions/onDeleteUser"
+        }
+    ]
+}

@@ -1,14 +1,14 @@
 import type { PageServerLoad } from "./$types";
 import type { LeadData } from "$lib/common/constants/types";
-import { DatabaseService, StorageService } from "$lib/services";
+import { DatabaseService, StorageService, FunctionService } from "$lib/services";
 import CONSTANTS from "$lib/common/constants";
 
 export const load: PageServerLoad = async () => {
+    const payload = {};
+    //const functions = await FunctionService.createExecution('userActionControl', JSON.stringify(payload));
+
 
     return {
-        leads: await DatabaseService.listDocuments<LeadData>(
-            CONSTANTS.DATABASE_CONFIG.databases.test.id, 
-            CONSTANTS.DATABASE_CONFIG.databases.test.collections.leads),
-        files: await StorageService.listFiles(CONSTANTS.DATABASE_CONFIG.buckets.dev)
+        
     }
 }

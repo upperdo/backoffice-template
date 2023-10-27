@@ -15,10 +15,17 @@ export const AccountStore: Writable<AccountData> = writable(null);
  * @description Initialize AccountStore
  * @returns Promise void
  */
-export const InitAccountStore = async (): Promise<void> => {
+export const InitAccountStore = async (store?: AccountData): Promise<void> => {
     try {
-        // @ts-ignore
-        AccountStore.set(await BackendPlatform.account.get());
+        
+        if(!store){
+            // @ts-ignore
+            AccountStore.set(await BackendPlatform.account.get());
+        }else{
+            // @ts-ignore
+            AccountStore.set(store);
+        }
+        
     }catch(e){
         AccountStore.set(null);
     }

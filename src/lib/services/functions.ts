@@ -36,30 +36,47 @@ export async function listExecutions<T>(functionId: string, logger: typeof Logge
 }
 
 /**
- * @name createExecution
- * @param functionId 
- * @param body 
- * @param logger
- * @param method
- * @param headers 
- * @description Trigger a function execution. The returned object will return you the current execution status. You can ping the Get Execution endpoint to get updates on the current execution status. Once this endpoint is called, your function execution process will start asynchronously
- * @returns ExecutionModel<T> | null
+ * @interface CreateExecutionParams
+ * @property {string} functionId
+ * @property {string} body
+ * @property {typeof LoggerUtility} [logger]
+ * @property {string} [method]
+ * @property {object} [headers]
+ * @property {boolean} [parse]
  */
-export async function createExecution<T> (functionId: string, body: string, method?: string, headers?: object, logger: typeof LoggerUtility = LoggerUtility): Promise<ExecutionModel<T> | null> {
-    const filePath = "lib/services/functions/ listExecution"
+
+export interface CreateExecutionParams {
+    functionId: string;
+    body?: object;
+    logger?: typeof LoggerUtility;
+    method?: string;
+    headers?: object;
+    parse?: boolean | false;
+}
+
+/**
+ * @name createExecution
+ * @param {CreateExecutionParams} params
+ * @description Trigger a function execution. The returned object will return you the current execution status. You can ping the Get Execution endpoint to get updates on the current execution status. Once this endpoint is called, your function execution process will start asynchronously
+ * @returns {Promise<ExecutionModel<T> | null>}
+ */
+export async function createExecution<T>(params: CreateExecutionParams): Promise<ExecutionModel<T>> {
+    const { functionId, body = {}, logger = LoggerUtility, method = 'GET', headers, parse = false } = params;
+    const filePath = "lib/services/functions/listExecution";
+
     try {
-        const result = await BackendPlatform.functions.createExecution(functionId, body, false, undefined, method, headers);
-        const execution = new ExecutionModel<T>(result);
-        
+        const result = await BackendPlatform.functions.createExecution(functionId, JSON.stringify(body), false, '/', method, headers);
+        const execution = new ExecutionModel<T>(result, parse);
+
         return execution;
-    }catch(error){
-        if(error instanceof BackendPlatform.AppwriteException){
+    } catch (error) {
+        if (error instanceof BackendPlatform.AppwriteException) {
             logger.error(`Appwrite exception: ${error.message} in:`, filePath);
         } else {
-            logger.error(`An error ocurred: ${error} in:`, filePath)
+            logger.error(`An error occurred: ${error} in:`, filePath);
         }
 
-        return null;
+        return new ExecutionModel<T>({});
     }
 }
 
