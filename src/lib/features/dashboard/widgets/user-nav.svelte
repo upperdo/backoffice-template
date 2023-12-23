@@ -1,26 +1,19 @@
 <script lang="ts">
-	// @ts-nocheck
-    // Core
-    // Stores
-    import { AccountStore } from "$lib/stores";
-    import { AvatarService } from "$lib/services";
-	import { LanguageStore } from "$lib/stores/locale";
+	// Core
+	// Stores
+	import { AccountStore } from '$lib/app/stores';
 
-    // Components
-	import * as DropdownMenu from "$lib/ui/components/dropdown-menu";
-	import * as Avatar from "$lib/ui/components/avatar";
-	import { Button } from "$lib/ui/components/button";
+	// Components
+	import * as DropdownMenu from '$lib/app/ui/components/dropdown-menu';
+	import * as Avatar from '$lib/app/ui/components/avatar';
+	import { Button } from '$lib/app/ui/components/button';
 </script>
 
-<DropdownMenu.Root positioning={{ placement: "bottom-end" }}>
+<DropdownMenu.Root positioning={{ placement: 'bottom-end' }}>
 	<DropdownMenu.Trigger asChild let:builder>
-		<Button
-			variant="ghost"
-			builders={[builder]}
-			class="relative h-8 w-8 rounded-full"
-		>
+		<Button variant="ghost" builders={[builder]} class="relative h-8 w-8 rounded-full">
 			<Avatar.Root class="h-8 w-8">
-				<Avatar.Image src={AvatarService.getUserInitials().href} alt={$AccountStore?.email} />
+				<!-- <Avatar.Image src={AvatarService.getUserInitials().href} alt={$AccountStore?.email} /> -->
 				<Avatar.Fallback>{'AV'}</Avatar.Fallback>
 			</Avatar.Root>
 		</Button>
@@ -37,23 +30,19 @@
 		<DropdownMenu.Separator />
 		<DropdownMenu.Group>
 			<DropdownMenu.Item>
-				<a href="/settings/profile">
-					{$LanguageStore.menu.profile}
-				</a>
+				<a href="/settings/profile"> Profile </a>
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>
-				<a href="/settings/account">{$LanguageStore.menu.account}</a>
+				<a href="/settings/account">Account</a>
 			</DropdownMenu.Item>
 			<DropdownMenu.Item>
-				<a href="/settings/security">{$LanguageStore.menu.security}</a>
+				<a href="/settings/security">Security</a>
 			</DropdownMenu.Item>
 		</DropdownMenu.Group>
 		<DropdownMenu.Separator />
 		<form action="/logout" method="POST" class="w-full">
 			<DropdownMenu.Item>
-				<button type="submit" class="w-full flex items-start">
-					{$LanguageStore.menu.logout}
-				</button>
+				<button type="submit" class="w-full flex items-start"> Logout </button>
 			</DropdownMenu.Item>
 		</form>
 	</DropdownMenu.Content>

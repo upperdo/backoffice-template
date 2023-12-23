@@ -1,0 +1,1 @@
+export type FormatCurrencyInterface = (amount: number, currency: string) => string;

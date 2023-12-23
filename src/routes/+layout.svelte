@@ -1,43 +1,34 @@
 <script lang="ts">
 	// Core
-	import { DebugBar } from '$lib/ui/widgets';
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-	import CONSTANTS from '$lib/common/constants';
-	import { StorageUtility } from '$lib/common/local_storage/storage_utility';
-	
+	import { InitAccountStore } from '$lib/app/stores';
+	import { localStorageUtil } from '$lib/app/utils';
+	import { config } from '$lib/app/config';
 	// Localization
-	import Localization from '$lib/localization/localization_utility';
-	
+
 	// Stores
-	import { InitLocaleStore, LocaleStore, LanguageStore } from '$lib/stores/locale';
 	// Components
-	import { Seo } from '$lib/ui/components';
 
 	// styles
 	import '../app.postcss';
 
 	// Variables
-	let userLocale:string;
-	let loadingLanguage = true;
 
+	const Storage = localStorageUtil();
+	export let data;
 
-	// Functions
-	InitLocaleStore(undefined, StorageUtility.getData, StorageUtility.saveData);
+	$: ({ locals, headers } = data);
+	$: ({ accoundData } = locals);
 
-	onMount(() => {
-		LocaleStore.subscribe(async (value) => {
-			userLocale = value || CONSTANTS.CORE.defaultLocale;
-			await Localization.loadLanguage(userLocale);
-			LanguageStore.set(Localization.language);
-			loadingLanguage = false;
-		});
-	})
+	$: if (accoundData?.$id) {
+		InitAccountStore(accoundData);
+	}
+
+	$: if (headers) {
+		Storage.setStorage(config.appwrite.fallback, headers);
+	}
 </script>
-<Seo seoConfig={CONSTANTS.CORE.seoConfig} />
-{#if browser && !loadingLanguage}
-	{#if CONSTANTS.CORE.debug === 'true'}
-		<DebugBar />
-	{/if}
+
+{#if browser}
 	<slot />
 {/if}
