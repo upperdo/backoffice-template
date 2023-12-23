@@ -2,7 +2,7 @@
 	// Core
 	import { browser } from '$app/environment';
 	import { InitAccountStore } from '$lib/app/stores';
-	import { localStorageUtil } from '$lib/app/utils';
+	import { localStorageUtil } from '$lib/app/utils/index';
 	import { config } from '$lib/app/config';
 	// Localization
 
