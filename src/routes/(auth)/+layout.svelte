@@ -1,9 +1,9 @@
 <script lang="ts">
-	//import { Button } from "$lib/ui/components/button";
-    import CONSTANTS from "$lib/common/constants";
 </script>
 
-<div class="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+<div
+	class="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0"
+>
 	<!-- <Button
 		href="/examples/authentication"
 		variant="ghost"
@@ -13,17 +13,16 @@
 	<div class="relative hidden h-screen flex-col bg-muted p-10 text-white dark:border-r lg:flex">
 		<div
 			class="absolute inset-0 bg-cover"
-			style={`background-image:url(${CONSTANTS.IMAGE_STRINGS.loginBackground});`}
+			style={`background-image:url(/assets/images/login_bg.avif);`}
 		/>
 		<div class="relative z-20 flex items-center text-lg font-medium">
-		    {CONSTANTS.TEXTS.appName}
+			Sveltekit Appwrite Template
 		</div>
 		<div class="relative z-20 mt-auto hidden">
 			<blockquote class="space-y-2">
 				<p class="text-lg">
-					&ldquo;This library has saved me countless hours of work and
-					helped me deliver stunning designs to my clients faster than
-					ever before. Highly recommended!&rdquo;
+					&ldquo;This library has saved me countless hours of work and helped me deliver stunning
+					designs to my clients faster than ever before. Highly recommended!&rdquo;
 				</p>
 				<footer class="text-sm">Sofia Davis</footer>
 			</blockquote>

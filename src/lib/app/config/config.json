@@ -1,0 +1,63 @@
+{
+    "appwrite": {
+        "endpoint": "http://your-endpoint-url/v1",
+        "projectId": "your-project-id",
+        "fallback": "X-Fallback-Cookies",
+        "projectHeader": "x-appwrite-project",
+        "ssrDomain": ""
+    },
+    "stripe": {
+        "secret_key": "your-secret-key",
+        "public_key": "your-public-key"
+    },
+    "storage": "",
+    "datbases": {
+        "core": {
+            "id": "core",
+            "collections": {
+                "users": "users"
+            }
+        }
+    },
+    "site": {
+        "title": "Sveltekit Appwrite Template",
+        "description": "",
+        "keywords": [],
+        "url": "",
+        "logo": "",
+        "favicon": "",
+        "contact": {
+            "email": "",
+            "phone": "",
+            "address": ""
+        },
+        "maintenance": false,
+        "service": "appwrite",
+        "localStorageItems": {},
+        "companyName": "",
+        "slogan": "",
+        "loadtext": "Processing..."
+    },
+    "menus": {
+        "mainMenu": [],
+        "footer": {}
+    },
+    "seo": {
+        "defaultMeta": {
+            "title": "",
+            "description": "",
+            "keywords": []
+        },
+        "socialMedia": {
+            "instagram": {
+                "profile": ""
+            },
+            "facebook": {
+                "page": ""
+            }
+        }
+    },
+    "auth": {
+        "defaultLoginRoute": "/auth/login"
+    }
+}

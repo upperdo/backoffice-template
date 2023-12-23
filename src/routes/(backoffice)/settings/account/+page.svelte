@@ -1,7 +1,7 @@
 <script lang="ts">
-	import Separator from "$lib/ui/components/separator/separator.svelte";
-	import AccountForm from "$lib/features/settings/widgets/forms/account-form.svelte";
-	import type { PageData } from "./$types";
+	import Separator from '$lib/app/ui/components/separator/separator.svelte';
+	import AccountForm from '$lib/features/settings/widgets/forms/account-form.svelte';
+	import type { PageData } from './$types';
 
 	export let data: PageData;
 </script>
@@ -10,8 +10,7 @@
 	<div>
 		<h3 class="text-lg font-medium">Account</h3>
 		<p class="text-sm text-muted-foreground">
-			Update your account settings. Set your preferred language and
-			timezone.
+			Update your account settings. Set your preferred language and timezone.
 		</p>
 	</div>
 	<Separator />
