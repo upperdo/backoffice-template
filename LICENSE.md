@@ -1,7 +1,7 @@
 MIT License
 
-Copyright (c) 2023 shadcn
-Copyright (c) 2023 huntabyte
+Copyright (c) 2023 Upper
+Copyright (c) 2023 acidlake
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
