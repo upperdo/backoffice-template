@@ -1,35 +1,46 @@
 <script lang="ts">
-	// @ts-nocheck
-	import { cn } from "$lib/common/utils";
-	import { LanguageStore } from "$lib/stores/locale";
+	import { cn } from '$lib/app/utils';
 
-	import { page } from "$app/stores";
+	import { page } from '$app/stores';
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
 	$: currentRoute = $page.url.pathname;
 </script>
-<nav class={cn("flex items-center space-x-4 lg:space-x-6", className)}>
+
+<nav class={cn('flex items-center space-x-4 lg:space-x-6', className)}>
 	<a
 		href="/dashboard"
-		class={`text-md font-medium  transition-colors hover:text-primary ${currentRoute === '/dashboard'? '' : 'text-muted-foreground'}`}>
-		{$LanguageStore.menu.dashboard}
+		class={`text-md font-medium  transition-colors hover:text-primary ${
+			currentRoute === '/dashboard' ? '' : 'text-muted-foreground'
+		}`}
+	>
+		Dashboard
 	</a>
 
-	<a href="/customers" class={`text-md font-medium  transition-colors hover:text-primary ${currentRoute === '/customers'? '' : 'text-muted-foreground'}`}>
-		{$LanguageStore.menu.customers}
+	<a
+		href="/customers"
+		class={`text-md font-medium  transition-colors hover:text-primary ${
+			currentRoute === '/customers' ? '' : 'text-muted-foreground'
+		}`}
+	>
+		Customers
 	</a>
 	<a
 		href="/products"
-		class={`text-md font-medium  transition-colors hover:text-primary ${currentRoute === '/products'? '' : 'text-muted-foreground'}`}
+		class={`text-md font-medium  transition-colors hover:text-primary ${
+			currentRoute === '/products' ? '' : 'text-muted-foreground'
+		}`}
 	>
-	{$LanguageStore.menu.products}
+		Products
 	</a>
 	<a
 		href="/sales"
-		class={`text-md font-medium  transition-colors hover:text-primary ${currentRoute === '/sales'? '' : 'text-muted-foreground'}`}
+		class={`text-md font-medium  transition-colors hover:text-primary ${
+			currentRoute === '/sales' ? '' : 'text-muted-foreground'
+		}`}
 	>
-	{$LanguageStore.menu.sales}
+		Sales
 	</a>
 </nav>

@@ -1,80 +1,66 @@
 <script lang="ts">
-	import { LanguageStore } from "$lib/stores/locale";
-	import { Icons } from "$lib/ui/components/icons";
-	import { Button } from "$lib/ui/components/button";
-	import { Input } from "$lib/ui/components/input";
-	import { Label } from "$lib/ui/components/label";
-	import { cn } from "$lib/common/utils/";
-	import { enhance } from "$app/forms";
-	import type { SubmitFunction } from "@sveltejs/kit";
+	import { enhance } from '$app/forms';
+	import Button from '$lib/app/ui/components/button/button.svelte';
+	import Input from '$lib/app/ui/components/input/input.svelte';
+	import Label from '$lib/app/ui/components/label/label.svelte';
+	import type { SubmitFunction } from '@sveltejs/kit';
+	import { cn } from '$lib/app/utils';
+	import { config } from '$lib/app/config';
 
 	let className: string | undefined | null = undefined;
 	export { className as class };
 
-	export let loading = false;
-	
-	export let form: any ;
-	export let onSubmit: SubmitFunction;
+	export let loading: boolean;
+	export let formAction = 'login';
+
+	const emailInputProp = {
+		id: 'email',
+		name: 'email',
+		placeholder: 'name@example.com',
+		type: 'email',
+		autoCapitalize: 'none',
+		autoComplete: 'email',
+		autoCorrect: 'off',
+		disabled: loading,
+		required: true
+	};
+
+	const passwordInputProp = {
+		id: 'password',
+		name: 'password',
+		placeholder: 'type your password',
+		type: 'password',
+		autoCapitalize: 'none',
+		autoComplete: 'password',
+		autoCorrect: 'off',
+		disabled: loading,
+		required: true
+	};
+
+	export let handleAuthUser: SubmitFunction;
 </script>
 
-<div class={cn("grid gap-6", className)} {...$$restProps}>
-	<form method="POST" action="?/login" use:enhance={onSubmit}>
+<div class={cn('grid gap-6', className)} {...$$restProps}>
+	<form action="/login?/{formAction}" method="POST" use:enhance={handleAuthUser}>
 		<div class="grid gap-2">
-			{#if form?.credentials}
-				<div class="text-red-500 w-full text-center font-semibold text-sm">
-					Please check your email and password.
-				</div>
-			{/if}
-			<div class="grid gap-2">
-				<Label class="text-gray-500" for="email">{$LanguageStore.emailInputLabel}</Label>
-				<Input
-					id="email"
-					name="email"
-					placeholder={$LanguageStore.emailInputPlaceHolderText}
-					type="email"
-					autocapitalize="none"
-					autocomplete="email"
-					autocorrect="off"
-					disabled={loading}
-				/>
-				<div></div>
-				<Label class="text-gray-500" for="password">{$LanguageStore.passwordInputLabel}</Label>
-				<Input
-					id="password"
-					name="password"
-					placeholder={$LanguageStore.passwordInputPlaceHolderText}
-					type="password"
-					autocapitalize="none"
-					autocomplete="off"
-					autocorrect="off"
-					disabled={loading}
-				/>
+			<div class="grid gap-1">
+				<Label class="sr-only" for="email">Email</Label>
+				<Input {...emailInputProp} />
 			</div>
-			<Button disabled={loading}>
-				{#if loading}
-					<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
-				{/if}
-				Login
-			</Button>
+			<div class="grid gap-1">
+				<Label class="sr-only" for="email">Password</Label>
+				<Input {...passwordInputProp} />
+			</div>
+			<div class="flex justify-end items-center">
+				<div class="mx-2" />
+				<Button disabled={loading} type="submit" class="flex gap-2">
+					{#if loading}
+						{config.site.loadtext}
+					{:else}
+						Entrar
+					{/if}
+				</Button>
+			</div>
 		</div>
 	</form>
-	<!-- <div class="relative">
-		<div class="absolute inset-0 flex items-center">
-			<span class="w-full border-t" />
-		</div>
-		<div class="relative flex justify-center text-xs uppercase">
-			<span class="bg-background px-2 text-muted-foreground">
-				Or continue with
-			</span>
-		</div>
-	</div> -->
-	<!-- <Button variant="outline" type="button" disabled={isLoading}>
-		{#if isLoading}
-			<Icons.spinner class="mr-2 h-4 w-4 animate-spin" />
-		{:else}
-			<Icons.gitHub class="mr-2 h-4 w-4" />
-		{/if}
-		{" "}
-		Github
-	</Button> -->
 </div>

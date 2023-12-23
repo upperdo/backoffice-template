@@ -1,16 +1,18 @@
 import { redirect } from "@sveltejs/kit";
 import type { PageServerLoad, Actions } from "./$types";
-import CONSTANTS from "$lib/common/constants";
-import { AccountService } from "$lib/services";
+import { createAppwriteSession } from "$lib/app/utils";
+import { DiContainer } from "$lib/infraestructure";
 
-export const load: PageServerLoad = async ({}) => {
-    throw redirect(302, '/');
+const { accountService } = DiContainer;
+
+export const load: PageServerLoad = async ({ }) => {
+    throw redirect(302, '/login');
 }
 
-export const actions: Actions =  {
-    async default({ cookies }){
-        const cookiesToDelete = [`${CONSTANTS.getCookieName()}`, 'a_session_t', 'x'];
-        await AccountService.deleteSession();
+export const actions: Actions = {
+    async default({ cookies }) {
+        const cookiesToDelete = [createAppwriteSession(), createAppwriteSession(true), 'a_session_t', 'x'];
+        await accountService.logout();
         cookiesToDelete.map((co) => {
             cookies.set(`${co}`, '', {
                 path: '/',
